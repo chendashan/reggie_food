@@ -35,12 +35,12 @@ public class EmployeeController {
 
         //没有查询到
         if (emp == null) {
-            return R.error("登录失败");
+            return R.error("账号不存在");
         }
 
         //密码错误
         if (!emp.getPassword().equals(password)) {
-            return R.error("登录失败");
+            return R.error("密码错误");
         }
 
         //查看员工状态
@@ -49,8 +49,15 @@ public class EmployeeController {
         }
 
         //登录成功
-        request.getSession().setAttribute("employee", employee.getId());
+        request.getSession().setAttribute("employee", emp.getId());
 
         return R.success(emp);
+    }
+
+
+    @PostMapping("/logout")
+    public R<String> logout(HttpServletRequest request) {
+        request.getSession().removeAttribute("employee");
+        return R.success("退出成功");
     }
 }
