@@ -28,3 +28,23 @@ key-value结构中，key是字符串类型，value有5种常用的数据类型
 - 列表 list
 - 集合 set
 - 有序集合 sorted set
+
+### Java中操作Redis
+
+**Spring Data Redis**
+在Spring Boot项目中，可以使用Spring Data Redis来简化Redis操作，maven坐标：
+
+```
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+```
+
+Spring Data Redis 中提供了一个高度封装的类：RedisTemplate，针对jedis客户端中 大量api进行了归类封装，将同一类型操作封装为operation接口
+
+- ValueOperations : 简单K-V操作
+- SetOperations : set类型数据操作
+- ZSetOperations : zset类型数据操作
+- HashOperations : 针对map类型的数据操作
+- ListOperations : 针对list类型的数据操作
